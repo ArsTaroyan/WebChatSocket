@@ -4,6 +4,7 @@ import am.a_t.webchatsocket.data.sockets.MessageWebSocketListener
 import am.a_t.webchatsocket.databinding.FragmentChatBinding
 import am.a_t.webchatsocket.extensions.convertGsonToString
 import am.a_t.webchatsocket.model.User
+import am.a_t.webchatsocket.model.UserWebSocket
 import am.a_t.webchatsocket.presentation.adapter.MessageAdapter
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -28,11 +29,14 @@ class ChatFragment : Fragment() {
     private val viewModel: ChatViewModel by viewModels()
     private lateinit var messageAdapter: MessageAdapter
     private val okHttpClient = OkHttpClient()
-    private var webSocket: WebSocket? = null
+//    private var webSocket: WebSocket? = null
     private lateinit var messageWebSocketListener: MessageWebSocketListener
     private var listUser: ArrayList<User> = arrayListOf()
+    private var listWebSocket: ArrayList<UserWebSocket?> = ArrayList()
     private val args: ChatFragmentArgs by navArgs()
     private lateinit var user: User
+    private lateinit var usName: String
+    private var isUser: Boolean = true
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -59,24 +63,45 @@ class ChatFragment : Fragment() {
     private fun initClickListeners() {
         with(binding) {
             btnConnect.setOnClickListener {
-                webSocket = okHttpClient.newWebSocket(createRequest(), messageWebSocketListener)
+                isUser = true
+                for (i in listWebSocket) {
+                    if (i?.name == edName.text.toString()) {
+                        isUser = false
+                        break
+                    }
+                }
+
+                if (isUser && edName.text.toString().isNotEmpty()) {
+                    usName = edName.text.toString()
+                    listWebSocket.add(UserWebSocket(okHttpClient.newWebSocket(createRequest(), messageWebSocketListener), usName))
+                }
             }
 
             btnDisconnect.setOnClickListener {
-                webSocket?.close(1000, "Canceled manually.")
+                for (i in listWebSocket) {
+                    if (i?.name == usName) {
+                        i.webSocket.close(1000, "Canceled manually.")
+                        break
+                    }
+                }
             }
 
             btnSend.setOnClickListener {
-                if (!edName.text.isNullOrEmpty()) {
-                    webSocket?.apply {
-                        user = User(
-                            args.name,
-                            edText.text.toString(),
-                            edName.text.toString()
-                        )
-                        viewModel.addMessage(user)
-                        send(user.convertGsonToString())
-                        edText.text?.clear()
+                if (!edName.text.isNullOrEmpty() && edText.text.toString().isNotEmpty()) {
+                    for (i in listWebSocket) {
+                        if (i?.name == usName) {
+                            i.webSocket.apply {
+                                user = User(
+                                    args.name,
+                                    edText.text.toString(),
+                                    edName.text.toString()
+                                )
+                                viewModel.addMessage(user)
+                                send(user.convertGsonToString())
+                                edText.text?.clear()
+                            }
+                            break
+                        }
                     }
                 }
             }
