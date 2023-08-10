@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".presentation.login.LoginFragment">
+
+    <androidx.appcompat.widget.AppCompatEditText
+        android:id="@+id/edYourName"
+        android:layout_width="@dimen/space_0"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="@dimen/space_30"
+        android:layout_marginTop="@dimen/space_100"
+        android:hint="@string/enter_your_name"
+        android:inputType="text"
+        android:textSize="@dimen/size_18"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/btnOpen"
+        android:layout_width="@dimen/space_100"
+        android:layout_height="@dimen/space_30"
+        android:layout_marginTop="@dimen/space_30"
+        android:background="@color/purple_500"
+        android:textColor="@color/white"
+        android:text="@string/open"
+        android:gravity="center"
+        android:textStyle="bold"
+        android:textSize="@dimen/size_18"
+        app:layout_constraintEnd_toEndOf="@+id/edYourName"
+        app:layout_constraintTop_toBottomOf="@+id/edYourName" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

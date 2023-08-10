@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context=".presentation.chat.ChatFragment">
+
+    <androidx.appcompat.widget.AppCompatEditText
+        android:id="@+id/edName"
+        android:layout_width="@dimen/space_0"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="@dimen/space_30"
+        android:layout_marginTop="@dimen/space_50"
+        android:hint="@string/enter_name"
+        android:inputType="text"
+        android:textSize="@dimen/size_18"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/btnConnect"
+        android:layout_width="@dimen/space_100"
+        android:layout_height="@dimen/space_30"
+        android:layout_marginTop="@dimen/space_30"
+        android:background="@color/purple_500"
+        android:textColor="@color/white"
+        android:text="@string/connect"
+        android:gravity="center"
+        android:textStyle="bold"
+        android:textSize="@dimen/size_18"
+        app:layout_constraintEnd_toEndOf="@+id/edName"
+        app:layout_constraintTop_toBottomOf="@+id/edName" />
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/tvConnect"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:text="@string/connect"
+        android:textSize="@dimen/size_18"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toTopOf="@+id/edName"
+        app:layout_constraintEnd_toEndOf="@+id/edName"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/btnDisconnect"
+        android:layout_width="@dimen/space_100"
+        android:layout_height="@dimen/space_30"
+        android:layout_marginTop="@dimen/space_30"
+        android:background="@color/purple_500"
+        android:textColor="@color/white"
+        android:text="@string/disconnect"
+        android:gravity="center"
+        android:textStyle="bold"
+        android:textSize="@dimen/size_18"
+        app:layout_constraintStart_toStartOf="@+id/edName"
+        app:layout_constraintTop_toBottomOf="@+id/edName" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rvMessage"
+        android:layout_width="@dimen/space_0"
+        android:layout_height="@dimen/space_0"
+        android:layout_margin="@dimen/space_30"
+        app:layout_constraintBottom_toTopOf="@+id/edText"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/btnConnect" />
+
+    <androidx.appcompat.widget.AppCompatEditText
+        android:id="@+id/edText"
+        android:layout_width="@dimen/space_0"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="@dimen/space_30"
+        android:layout_marginBottom="@dimen/space_50"
+        android:hint="@string/edit_text"
+        android:inputType="text"
+        android:textSize="@dimen/size_18"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/btnSend"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/btnSend"
+        android:layout_width="@dimen/space_50"
+        android:layout_height="30dp"
+        android:background="@color/purple_500"
+        android:gravity="center"
+        android:text="@string/send"
+        android:textColor="@color/white"
+        android:textSize="@dimen/size_18"
+        android:textStyle="bold"
+        android:layout_marginEnd="@dimen/space_10"
+        app:layout_constraintBottom_toBottomOf="@+id/edText"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/edText" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
